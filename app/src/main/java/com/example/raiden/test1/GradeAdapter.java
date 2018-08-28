@@ -1,7 +1,9 @@
 package com.example.raiden.test1;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,10 +14,14 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> {
-    private List<CourseInfo> mCourseList;
+    private List<CourseInfo> mCourseList = new ArrayList<>();
     private static final String TAG = "GradeAdapter";
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -33,8 +39,14 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
         }
     }
 
-    public GradeAdapter(List<CourseInfo> courseInfos) {
-        mCourseList = courseInfos;
+    public GradeAdapter(Context mContext) {
+        SharedPreferences data = mContext.getSharedPreferences("MyCourses",Context.MODE_PRIVATE);
+
+        Map<String,?> allCourses = data.getAll();
+        for(Map.Entry<String,?> entry: allCourses.entrySet()) {
+            Gson gson = new Gson();
+            mCourseList.add(gson.fromJson(entry.getValue().toString(),CourseInfo.class));
+        }
     }
 
     @NonNull

@@ -35,4 +35,8 @@ class CourseInfo {
     public void addCourseData(courseComponent newdata) {
         courseData.add(newdata);
     }
+
+    public String toString() {
+        return courseName + ": " + getGrade();
+    }
 }

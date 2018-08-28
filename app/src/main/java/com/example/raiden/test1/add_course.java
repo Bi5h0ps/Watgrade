@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class add_course extends AppCompatActivity {
-//haha
     @BindView(R.id.custom_navi_title)
     TextView tvTitle;
 
