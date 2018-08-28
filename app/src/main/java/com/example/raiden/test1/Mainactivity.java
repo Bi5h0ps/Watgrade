@@ -65,6 +65,13 @@ public class Mainactivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        adapter = new GradeAdapter(getApplicationContext());
+        mRecycle.setAdapter(adapter);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_mainactivity, menu);

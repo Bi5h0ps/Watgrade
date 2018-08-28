@@ -1,9 +1,11 @@
 package com.example.raiden.test1;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class CourseInfo {
+class CourseInfo implements Comparable<CourseInfo> {
     private String courseName;
     private List<courseComponent> courseData;
 
@@ -38,5 +40,10 @@ class CourseInfo {
 
     public String toString() {
         return courseName + ": " + getGrade();
+    }
+
+    @Override
+    public int compareTo(@NonNull CourseInfo o) {
+        return courseName.compareTo(o.getCourseName());
     }
 }

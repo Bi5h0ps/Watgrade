@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +48,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
             Gson gson = new Gson();
             mCourseList.add(gson.fromJson(entry.getValue().toString(),CourseInfo.class));
         }
+        Collections.sort(mCourseList);
     }
 
     @NonNull
