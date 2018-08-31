@@ -1,9 +1,12 @@
 package com.example.raiden.test1;
 
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -55,12 +59,37 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.grade_slot,viewGroup,false);
-        ViewHolder mViewHolder = new ViewHolder(view);
+        final ViewHolder mViewHolder = new ViewHolder(view);
         mViewHolder.entireView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),courseDetail.class);
                 view.getContext().startActivity(intent);
+            }
+        });
+        mViewHolder.entireView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(final View view) {
+                final View mView = view;
+                AlertDialog dialog = new  AlertDialog.Builder(view.getContext())
+                        .setTitle("Withdraw" )
+                        .setCancelable(false)
+                        .setMessage("You sure you want to drop the course " + mViewHolder.title.getText().toString() + "?" )
+                        .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences("MyCourses",Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                String courseName = ((TextView) mView.findViewById(R.id.grade_slot_title)).getText().toString();
+                                editor.remove(courseName);
+                                editor.apply();
+                            }
+                        })
+                        .setNegativeButton("No" , null)
+                        .show();
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                return true;
             }
         });
         return mViewHolder;
