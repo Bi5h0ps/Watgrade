@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -83,10 +84,12 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
                                 String courseName = ((TextView) mView.findViewById(R.id.grade_slot_title)).getText().toString();
                                 editor.remove(courseName);
                                 editor.apply();
+                                Mainactivity.refreshLayout.autoRefresh();
                             }
                         })
                         .setNegativeButton("No" , null)
                         .show();
+                final Context mContext = dialog.getContext();
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
                 return true;

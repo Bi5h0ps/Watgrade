@@ -15,8 +15,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +30,7 @@ public class Mainactivity extends AppCompatActivity {
 
     private RecyclerView mRecycle;
     private GradeAdapter adapter;
+    public static RefreshLayout refreshLayout;
     private static final String TAG = "Mainactivity";
 
     @Override
@@ -45,6 +51,16 @@ public class Mainactivity extends AppCompatActivity {
             }
         });
 
+        refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                adapter = new GradeAdapter(getApplicationContext());
+                mRecycle.setAdapter(adapter);
+                refreshlayout.finishRefresh(200);//传入false表示刷新失败
+            }
+        });
+
         initCourseList();
         mRecycle = (RecyclerView) findViewById(R.id.course_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -62,14 +78,10 @@ public class Mainactivity extends AppCompatActivity {
             ObjectAnimator animator = (ObjectAnimator)view.findViewById(R.id.grade_slot_progress).getTag();
             animator.start();
         }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
         adapter = new GradeAdapter(getApplicationContext());
         mRecycle.setAdapter(adapter);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
