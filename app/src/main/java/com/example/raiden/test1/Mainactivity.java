@@ -109,21 +109,21 @@ public class Mainactivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         CourseInfo course0 = new CourseInfo("CS246");
-        course0.addCourseData(new courseComponent("Final",1,84));
+        course0.addCourseData(new courseComponent("Final",100,84));
         CourseInfo course1 = new CourseInfo("CS245");
-        course1.addCourseData(new courseComponent("Final",1,79));
+        course1.addCourseData(new courseComponent("Final",100,79));
         CourseInfo course2 = new CourseInfo("ECON102");
-        course2.addCourseData(new courseComponent("Final",1,84));
+        course2.addCourseData(new courseComponent("Final",100,84));
         CourseInfo course3 = new CourseInfo("Stat231");
-        course3.addCourseData(new courseComponent("Final",1,86));
+        course3.addCourseData(new courseComponent("Final",100,86));
         CourseInfo course4 = new CourseInfo("CS240");
-        course4.addCourseData(new courseComponent("Final",1,92));
+        course4.addCourseData(new courseComponent("Final",100,92));
         CourseInfo course5 = new CourseInfo("CS241");
-        course5.addCourseData(new courseComponent("Final",1,94));
+        course5.addCourseData(new courseComponent("Final",100,94));
         CourseInfo course6 = new CourseInfo("CS251");
-        course6.addCourseData(new courseComponent("Final",1,97));
+        course6.addCourseData(new courseComponent("Final",100,97));
         CourseInfo course7 = new CourseInfo("Math239");
-        course7.addCourseData(new courseComponent("Final",1,77));
+        course7.addCourseData(new courseComponent("Final",100,77));
         CourseInfo course8 = new CourseInfo("PD999");
 
         Gson gson = new Gson();

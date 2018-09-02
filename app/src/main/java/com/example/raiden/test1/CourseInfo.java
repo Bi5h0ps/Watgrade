@@ -28,7 +28,7 @@ class CourseInfo implements Comparable<CourseInfo> {
       } else {
           double netgrade = 0;
           for (int i = 0; i < courseData.size(); i++) {
-              netgrade += courseData.get(i).getWeight() * courseData.get(i).getScore();
+              netgrade += courseData.get(i).getWeight() * courseData.get(i).getScore() * 0.01;
           }
           return (int)netgrade;
       }
@@ -36,6 +36,10 @@ class CourseInfo implements Comparable<CourseInfo> {
 
     public void addCourseData(courseComponent newdata) {
         courseData.add(newdata);
+    }
+
+    public List<courseComponent> getCourseData() {
+        return courseData;
     }
 
     public String toString() {

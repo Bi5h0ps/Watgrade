@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_course_component">
+
+    <include layout="@layout/basenavigation"/>
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/new_component_name"
+        android:hint="Event name (e.g. Assignment1)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <EditText
+        android:inputType="numberDecimal"
+        android:id="@+id/new_component_weight"
+        android:hint="Event weight"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="%"
+            android:textSize="20sp"/>
+    <EditText
+        android:inputType="numberDecimal"
+        android:id="@+id/new_component_score"
+        android:hint="Event score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="%"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+</LinearLayout>

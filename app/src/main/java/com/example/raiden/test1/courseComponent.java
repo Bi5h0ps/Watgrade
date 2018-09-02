@@ -1,6 +1,8 @@
 package com.example.raiden.test1;
 
-class courseComponent {
+import android.support.annotation.NonNull;
+
+class courseComponent implements Comparable<courseComponent>{
     private String name;
     private double weight;
     private double score;
@@ -33,5 +35,10 @@ class courseComponent {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    @Override
+    public int compareTo(@NonNull courseComponent o) {
+        return name.compareTo(o.getName());
     }
 }
