@@ -65,6 +65,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),courseDetail.class);
+                intent.putExtra("Coursename",mViewHolder.title.getText());
                 view.getContext().startActivity(intent);
             }
         });

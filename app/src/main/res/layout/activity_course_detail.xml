@@ -4,15 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".courseDetail">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
-    </android.support.design.widget.CoordinatorLayout>
+    <com.shinelw.library.ColorArcProgressBar
+        android:id="@+id/grade_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:back_color="@android:color/darker_gray"
+        app:back_width="10dp"
+        app:front_color1="@color/colorAccent"
+        app:front_color2="#ff0000"
+        app:front_color3="#ffd700"
+        app:front_width="10dp"
+        app:is_need_content="true"
+        app:is_need_unit="true"
+        app:max_value="100"
+        app:string_unit="百分比%"
+        app:total_engle="270" />
+
 
 </LinearLayout>
