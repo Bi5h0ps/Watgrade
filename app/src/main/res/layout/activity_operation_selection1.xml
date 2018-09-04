@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OperationSelection1">
+
+    <include layout="@layout/basenavigation"/>
+
+    <Button
+        android:id="@+id/edit_component"
+        style="@android:style/Widget.Material.Light.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textAllCaps="false"
+        android:text="Edit event"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/delete_component"
+        style="@android:style/Widget.Material.Light.Button"
+        android:layout_marginTop="20dp"
+        android:text="Delete event"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

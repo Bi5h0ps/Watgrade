@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".courseDetail" />
         <activity android:name=".add_course" />
-        <activity android:name=".Add_course_component"></activity>
+        <activity android:name=".Add_course_component" />
+        <activity android:name=".OperationSelection1" />
+        <activity android:name=".EditCourseComponent"></activity>
     </application>
 
 </manifest>

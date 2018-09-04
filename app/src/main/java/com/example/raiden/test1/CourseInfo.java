@@ -34,6 +34,14 @@ class CourseInfo implements Comparable<CourseInfo> {
       }
     };
 
+    public double getWeight() {
+        double netweight = 0;
+        for(courseComponent i: courseData) {
+            netweight += i.getWeight();
+        }
+        return netweight;
+    }
+
     public void addCourseData(courseComponent newdata) {
         courseData.add(newdata);
     }
@@ -45,6 +53,7 @@ class CourseInfo implements Comparable<CourseInfo> {
     public String toString() {
         return courseName + ": " + getGrade();
     }
+
 
     @Override
     public int compareTo(@NonNull CourseInfo o) {

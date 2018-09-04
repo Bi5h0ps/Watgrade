@@ -4,19 +4,20 @@ import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class Add_course_component extends AppCompatActivity {
+public class EditCourseComponent extends AppCompatActivity {
+
     @BindView(R.id.custom_navi_title)
     TextView mTitle;
     @BindView(R.id.confirm_activity)
@@ -28,7 +29,12 @@ public class Add_course_component extends AppCompatActivity {
     @BindView(R.id.new_component_score)
     EditText mComponentScore;
 
-    String coursetitle;
+    private String coursetitle;
+    private String eventname;
+    private CourseInfo mCourse;
+    private courseComponent mCourseComponent;
+    private double origionalweight;
+
     private static final String TAG = "Add_course_component";
 
     @Override
@@ -38,17 +44,31 @@ public class Add_course_component extends AppCompatActivity {
         ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        mTitle.setText("New Course Event");
+        mTitle.setText("Edit Course Event");
+        mConfrim.setText("Save");
         coursetitle = getIntent().getStringExtra("CourseTitle");
+        eventname = getIntent().getStringExtra("EventName");
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyCourses", MODE_PRIVATE);
+        Gson gson = new Gson();
+        mCourse = gson.fromJson(sharedPreferences.getString(coursetitle, "Null"), CourseInfo.class);
+
+        List<courseComponent> data = mCourse.getCourseData();
+        mCourseComponent = data.get(0);
+        for(int i = 0; i < data.size(); i++) {
+            if(data.get(i).getName().equals(eventname)) {
+                mCourseComponent = data.get(i);
+            }
+        }
+
+        mComponentName.setText(mCourseComponent.getName());
+        mComponentScore.setText(mCourseComponent.getScore() + "");
+        mComponentWeight.setText(mCourseComponent.getWeight() + "");
+        origionalweight = mCourseComponent.getWeight();
     }
 
     @OnClick(R.id.confirm_activity)
     public void onConfrim() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyCourses", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        Gson gson = new Gson();
-        CourseInfo mCourse = gson.fromJson(sharedPreferences.getString(coursetitle, "Null"), CourseInfo.class);
         String eventname = mComponentName.getText().toString();
         String rawweight = mComponentWeight.getText().toString();
         String rawscore = mComponentScore.getText().toString();
@@ -80,7 +100,7 @@ public class Add_course_component extends AppCompatActivity {
             return;
         }
 
-        if ((100 - mCourse.getWeight()) < eventweight) {
+        if ((100 - mCourse.getWeight() + origionalweight) < eventweight) {
             Toast.makeText(this,"Net weight exceeded 100%! Current weight avaliable: " + (100 - mCourse.getWeight()) + "%",Toast.LENGTH_SHORT).show();
             return;
         }
@@ -90,8 +110,15 @@ public class Add_course_component extends AppCompatActivity {
             return;
         }
 
-        courseComponent mCourseComponent = new courseComponent(eventname, eventweight, eventscore);
-        mCourse.addCourseData(mCourseComponent);
+        mCourseComponent.setName(eventname);
+        mCourseComponent.setScore(eventscore);
+        mCourseComponent.setWeight(eventweight);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyCourses", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+
         String updated = gson.toJson(mCourse);
         editor.putString(coursetitle, updated);
         editor.apply();
