@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ public class Add_course_component extends AppCompatActivity {
     EditText mComponentWeight;
     @BindView(R.id.new_component_score)
     EditText mComponentScore;
+    @BindView(R.id.cancel_activity)
+    ImageView mCancel;
 
     String coursetitle;
     private static final String TAG = "Add_course_component";
@@ -40,6 +43,11 @@ public class Add_course_component extends AppCompatActivity {
         actionBar.hide();
         mTitle.setText("New Course Event");
         coursetitle = getIntent().getStringExtra("CourseTitle");
+    }
+
+    @OnClick(R.id.cancel_activity)
+    public void onCancel() {
+        finish();
     }
 
     @OnClick(R.id.confirm_activity)

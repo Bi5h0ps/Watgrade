@@ -26,6 +26,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.wangyuwei.particleview.Particle;
+import me.wangyuwei.particleview.ParticleView;
+
 public class Mainactivity extends AppCompatActivity {
 
     private RecyclerView mRecycle;
@@ -38,7 +41,7 @@ public class Mainactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainactivity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Fall2018");
+        toolbar.setTitle("Watgrade");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

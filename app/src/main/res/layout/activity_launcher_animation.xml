@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:pv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".LauncherAnimation">
+
+    <me.wangyuwei.particleview.ParticleView
+        android:id="@+id/my_particle_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        pv:pv_background_color="#2E2E2E"
+        pv:pv_host_text="Wat"
+        pv:pv_host_text_size="50sp"
+        pv:pv_particle_text="grade"
+        pv:pv_particle_text_size="25sp"
+        pv:pv_text_color="#ffff00"
+        pv:pv_text_anim_time="1000"
+        pv:pv_spread_anim_time="500"
+        pv:pv_host_text_anim_time="1500" />
+
+</android.support.constraint.ConstraintLayout>

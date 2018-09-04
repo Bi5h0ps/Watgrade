@@ -34,4 +34,6 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
     implementation 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
+    implementation 'me.wangyuwei:ParticleView:1.0.4'
+    implementation 'com.github.medyo:fancybuttons:1.9.0'
 }

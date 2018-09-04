@@ -16,6 +16,7 @@ import com.shinelw.library.ColorArcProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 public class courseDetail extends AppCompatActivity {
     @BindView(R.id.grade_progress)
@@ -24,7 +25,7 @@ public class courseDetail extends AppCompatActivity {
     RecyclerView mComponentDisplay;
 
     @BindView(R.id.Add_new_event)
-    public Button newevent;
+    public FancyButton newevent;
 
     private String coursetitle;
 

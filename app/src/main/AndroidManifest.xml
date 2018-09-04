@@ -13,17 +13,19 @@
             android:name=".Mainactivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".courseDetail" />
+        <activity android:name=".add_course" />
+        <activity android:name=".Add_course_component" />
+        <activity android:name=".OperationSelection1" />
+        <activity android:name=".EditCourseComponent" />
+        <activity android:name=".LauncherAnimation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".courseDetail" />
-        <activity android:name=".add_course" />
-        <activity android:name=".Add_course_component" />
-        <activity android:name=".OperationSelection1" />
-        <activity android:name=".EditCourseComponent"></activity>
     </application>
 
 </manifest>

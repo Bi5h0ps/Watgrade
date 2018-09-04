@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class EditCourseComponent extends AppCompatActivity {
     EditText mComponentWeight;
     @BindView(R.id.new_component_score)
     EditText mComponentScore;
+    @BindView(R.id.cancel_activity)
+    ImageView mCancel;
 
     private String coursetitle;
     private String eventname;
@@ -65,6 +68,11 @@ public class EditCourseComponent extends AppCompatActivity {
         mComponentScore.setText(mCourseComponent.getScore() + "");
         mComponentWeight.setText(mCourseComponent.getWeight() + "");
         origionalweight = mCourseComponent.getWeight();
+    }
+
+    @OnClick(R.id.cancel_activity)
+    public void onCancel() {
+        finish();
     }
 
     @OnClick(R.id.confirm_activity)

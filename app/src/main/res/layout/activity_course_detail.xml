@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +10,8 @@
 
     <com.shinelw.library.ColorArcProgressBar
         android:id="@+id/grade_progress"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -25,8 +28,10 @@
         app:total_engle="270" />
 
     <LinearLayout
+        android:id="@+id/value_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grade_progress">
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -54,22 +59,35 @@
             android:gravity="center" />
     </LinearLayout>
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/Course_component_display"
+        android:layout_below="@+id/value_bar"
+        android:layout_above="@id/Add_new_event"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9">
+        android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/Add_new_event"
-        android:text="Add Event"
-        android:textAllCaps="false"
-        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="1dp"
+        fancy:fb_defaultColor="#ffd700"
+        fancy:fb_focusColor="#ffff00"
+        fancy:fb_radius="10dp"
+        fancy:fb_text="Add Event"
+        fancy:fb_textColor="#000000" />
 
 
-</LinearLayout>
+
+</RelativeLayout>
