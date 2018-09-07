@@ -11,12 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -35,6 +41,8 @@ public class Mainactivity extends AppCompatActivity {
     private GradeAdapter adapter;
     public static RefreshLayout refreshLayout;
     private static final String TAG = "Mainactivity";
+    private FloatingActionButton fab;
+    TextView tips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +72,65 @@ public class Mainactivity extends AppCompatActivity {
             }
         });
 
-        initCourseList();
+        CourseInfo courseInfo = new CourseInfo("Orientation");
+        courseInfo.addCourseData(new courseComponent("Assignment0",100,99));
+        Gson gson = new Gson();
+        String data = gson.toJson(courseInfo);
+        SharedPreferences database = getSharedPreferences("MyCourses",MODE_PRIVATE);
+        SharedPreferences.Editor databaseeditor = database.edit();
+        databaseeditor.putString(courseInfo.getCourseName(),data);
+        databaseeditor.apply();
+
         mRecycle = (RecyclerView) findViewById(R.id.course_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycle.setLayoutManager(manager);
         adapter = new GradeAdapter(getApplicationContext());
         mRecycle.setAdapter(adapter);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("ins",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if(!sharedPreferences.getBoolean("step1",false)) {
+            final SpannableString note1 = new SpannableString("Press \"+\" button to add a new course");
+            final SpannableString note2 = new SpannableString("Tap to view the course detail, holding to delete the course");
+
+            final TapTargetSequence sequence = new TapTargetSequence(this)
+                    .targets(
+            TapTarget.forView(fab,note1)
+                    .outerCircleColor(R.color.background_color_gray)
+                    //.outerCircleAlpha(0.96f)            // Specify the alpha amount for the outer circle
+                    .titleTextSize(30)                  // Specify the size (in sp) of the title text
+                    .titleTextColor(R.color.background_color_black)      // Specify the color of the title text
+                    .descriptionTextSize(20)            // Specify the size (in sp) of the description text
+                    .descriptionTextColor(R.color.background_color_black)  // Specify the color of the description text
+                    .textColor(R.color.background_color_black)            // Specify a color for both the title and description text
+                    .drawShadow(true)                   // Whether to draw a drop shadow or not
+                    .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                    .tintTarget(true)                   // Whether to tint the target view's color
+                    .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
+                    .targetRadius(40)
+                            .id(1),
+
+                            TapTarget.forView(mRecycle,note2)
+                                    .outerCircleColor(R.color.background_color_gray)
+                                    //.outerCircleAlpha(0.96f)            // Specify the alpha amount for the outer circle
+                                    .titleTextSize(30)                  // Specify the size (in sp) of the title text
+                                    .titleTextColor(R.color.background_color_black)      // Specify the color of the title text
+                                    .descriptionTextSize(20)            // Specify the size (in sp) of the description text
+                                    .descriptionTextColor(R.color.background_color_black)  // Specify the color of the description text
+                                    .textColor(R.color.background_color_black)            // Specify a color for both the title and description text
+                                    .drawShadow(true)                   // Whether to draw a drop shadow or not
+                                    .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                    .tintTarget(true)                   // Whether to tint the target view's color
+                                    .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
+                                    .targetRadius(35)
+                                    .id(2));
+
+            sequence.start();
+            editor.putBoolean("step1",true);
+            editor.apply();
+        }
     }
 
     @Override
@@ -105,50 +166,5 @@ public class Mainactivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void initCourseList() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyCourses",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        CourseInfo course0 = new CourseInfo("CS246");
-        course0.addCourseData(new courseComponent("Final",100,84));
-        CourseInfo course1 = new CourseInfo("CS245");
-        course1.addCourseData(new courseComponent("Final",100,79));
-        CourseInfo course2 = new CourseInfo("ECON102");
-        course2.addCourseData(new courseComponent("Final",100,84));
-        CourseInfo course3 = new CourseInfo("Stat231");
-        course3.addCourseData(new courseComponent("Final",100,86));
-        CourseInfo course4 = new CourseInfo("CS240");
-        course4.addCourseData(new courseComponent("Final",100,92));
-        CourseInfo course5 = new CourseInfo("CS241");
-        course5.addCourseData(new courseComponent("Final",100,94));
-        CourseInfo course6 = new CourseInfo("CS251");
-        course6.addCourseData(new courseComponent("Final",100,97));
-        CourseInfo course7 = new CourseInfo("Math239");
-        course7.addCourseData(new courseComponent("Final",100,77));
-        CourseInfo course8 = new CourseInfo("PD999");
-
-        Gson gson = new Gson();
-        editor.putString(course0.getCourseName(),gson.toJson(course0));
-        editor.putString(course1.getCourseName(),gson.toJson(course1));
-        editor.putString(course2.getCourseName(),gson.toJson(course2));
-        editor.putString(course3.getCourseName(),gson.toJson(course3));
-        editor.putString(course4.getCourseName(),gson.toJson(course4));
-        editor.putString(course5.getCourseName(),gson.toJson(course5));
-        editor.putString(course6.getCourseName(),gson.toJson(course6));
-        editor.putString(course7.getCourseName(),gson.toJson(course7));
-        editor.putString(course8.getCourseName(),gson.toJson(course8));
-        editor.apply();
-        /*
-        enrolledCourses.add(course0);
-        enrolledCourses.add(course1);
-        enrolledCourses.add(course2);
-        enrolledCourses.add(course3);
-        enrolledCourses.add(course4);
-        enrolledCourses.add(course5);
-        enrolledCourses.add(course6);
-        enrolledCourses.add(course7);
-        enrolledCourses.add(course8);*/
     }
 }

@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
     implementation 'me.wangyuwei:ParticleView:1.0.4'
     implementation 'com.github.medyo:fancybuttons:1.9.0'
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
 }

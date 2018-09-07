@@ -36,7 +36,8 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_mainactivity" />
+    <include layout="@layout/content_mainactivity"
+        android:id="@+id/large_chunk"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

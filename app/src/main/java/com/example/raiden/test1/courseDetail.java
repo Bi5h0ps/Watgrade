@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.shinelw.library.ColorArcProgressBar;
@@ -20,12 +23,18 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class courseDetail extends AppCompatActivity {
     @BindView(R.id.grade_progress)
-    public ColorArcProgressBar progressBar;
+    ColorArcProgressBar progressBar;
     @BindView(R.id.Course_component_display)
     RecyclerView mComponentDisplay;
 
     @BindView(R.id.Add_new_event)
-    public FancyButton newevent;
+    FancyButton newevent;
+    @BindView(R.id.cancel_activity)
+    ImageView ActivityCancel;
+    @BindView(R.id.confirm_activity)
+    TextView ActivityConfrim;
+    @BindView(R.id.custom_navi_title)
+    TextView ActivityTitle;
 
     private String coursetitle;
 
@@ -50,6 +59,13 @@ public class courseDetail extends AppCompatActivity {
         mComponentDisplay.setLayoutManager(linearLayoutManager);
         ComponentAdapter adapter = new ComponentAdapter(this,coursetitle);
         mComponentDisplay.setAdapter(adapter);
+        ActivityConfrim.setVisibility(View.INVISIBLE);
+        ActivityTitle.setText(coursetitle);
+    }
+
+    @OnClick(R.id.cancel_activity)
+    public  void onCancel() {
+        finish();
     }
 
     @OnClick(R.id.Add_new_event)

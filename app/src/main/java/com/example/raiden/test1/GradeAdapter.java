@@ -36,7 +36,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
         View entireView;
         ProgressBar courseProgress;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             entireView = itemView;
             title = (TextView) itemView.findViewById(R.id.grade_slot_title);

@@ -30,6 +30,7 @@ class CourseInfo implements Comparable<CourseInfo> {
           for (int i = 0; i < courseData.size(); i++) {
               netgrade += courseData.get(i).getWeight() * courseData.get(i).getScore() * 0.01;
           }
+          netgrade = Math.round(netgrade);
           return (int)netgrade;
       }
     };
