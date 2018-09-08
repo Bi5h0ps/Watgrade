@@ -52,6 +52,9 @@ public class Mainactivity extends AppCompatActivity {
         toolbar.setTitle("Watgrade");
         setSupportActionBar(toolbar);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("ins",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(getDrawable(R.drawable.business_add));
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,14 +75,16 @@ public class Mainactivity extends AppCompatActivity {
             }
         });
 
-        CourseInfo courseInfo = new CourseInfo("Orientation");
-        courseInfo.addCourseData(new courseComponent("Assignment0",100,99));
-        Gson gson = new Gson();
-        String data = gson.toJson(courseInfo);
-        SharedPreferences database = getSharedPreferences("MyCourses",MODE_PRIVATE);
-        SharedPreferences.Editor databaseeditor = database.edit();
-        databaseeditor.putString(courseInfo.getCourseName(),data);
-        databaseeditor.apply();
+        if(!sharedPreferences.getBoolean("step1",false)) {
+            CourseInfo courseInfo = new CourseInfo("Orientation");
+            courseInfo.addCourseData(new courseComponent("Assignment0", 100, 99));
+            Gson gson = new Gson();
+            String data = gson.toJson(courseInfo);
+            SharedPreferences database = getSharedPreferences("MyCourses", MODE_PRIVATE);
+            SharedPreferences.Editor databaseeditor = database.edit();
+            databaseeditor.putString(courseInfo.getCourseName(), data);
+            databaseeditor.apply();
+        }
 
         mRecycle = (RecyclerView) findViewById(R.id.course_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -89,8 +94,6 @@ public class Mainactivity extends AppCompatActivity {
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("ins",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
         if(!sharedPreferences.getBoolean("step1",false)) {
             final SpannableString note1 = new SpannableString("Press \"+\" button to add a new course");
             final SpannableString note2 = new SpannableString("Tap to view the course detail, holding to delete the course");
@@ -121,7 +124,7 @@ public class Mainactivity extends AppCompatActivity {
                                     .descriptionTextColor(R.color.background_color_black)  // Specify the color of the description text
                                     .textColor(R.color.background_color_black)            // Specify a color for both the title and description text
                                     .drawShadow(true)                   // Whether to draw a drop shadow or not
-                                    .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                    .cancelable(true)                  // Whether tapping outside the outer circle dismisses the view
                                     .tintTarget(true)                   // Whether to tint the target view's color
                                     .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
                                     .targetRadius(35)

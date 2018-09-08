@@ -103,7 +103,7 @@ public class courseDetail extends AppCompatActivity {
                                     .descriptionTextColor(R.color.background_color_black)  // Specify the color of the description text
                                     .textColor(R.color.background_color_black)            // Specify a color for both the title and description text
                                     .drawShadow(true)                   // Whether to draw a drop shadow or not
-                                    .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                    .cancelable(true)                  // Whether tapping outside the outer circle dismisses the view
                                     .tintTarget(true)                   // Whether to tint the target view's color
                                     .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
                                     .targetRadius(35)
