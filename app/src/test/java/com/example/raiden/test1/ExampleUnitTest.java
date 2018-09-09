@@ -1,4 +1,4 @@
-package com.example.raiden.test1;
+package com.haoyuandev.raiden.test1;
 
 import org.junit.Test;
 

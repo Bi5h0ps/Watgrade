@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.raiden.test1">
+    package="com.haoyuandev.raiden.test1">
 
     <application
         android:allowBackup="true"
@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Mainactivity"
+            android:name="com.haoyuandev.raiden.test1.Mainactivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".courseDetail" />
-        <activity android:name=".add_course" />
-        <activity android:name=".Add_course_component" />
-        <activity android:name=".OperationSelection1" />
-        <activity android:name=".EditCourseComponent" />
-        <activity android:name=".LauncherAnimation">
+        <activity android:name="com.haoyuandev.raiden.test1.courseDetail" />
+        <activity android:name="com.haoyuandev.raiden.test1.add_course" />
+        <activity android:name="com.haoyuandev.raiden.test1.Add_course_component" />
+        <activity android:name="com.haoyuandev.raiden.test1.OperationSelection1" />
+        <activity android:name="com.haoyuandev.raiden.test1.EditCourseComponent" />
+        <activity android:name="com.haoyuandev.raiden.test1.LauncherAnimation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".courseDetail">
+    tools:context="com.haoyuandev.raiden.test1.courseDetail">
 
     <include layout="@layout/basenavigation"
         android:id="@+id/navigation_custom"

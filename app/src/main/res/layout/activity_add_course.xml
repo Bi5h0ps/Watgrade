@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".add_course">
+    tools:context="com.haoyuandev.raiden.test1.add_course">
 
     <include layout="@layout/basenavigation"></include>
     <EditText
